@@ -10,29 +10,32 @@
     <div id="form" dir="rtl">
         <form method="post">
             <div class="div1">
-            <input type="text" name="username" class="input1" id="username" placeholder="نام کاربری" autofocus>
+                <input type="text" name="username" class="input1" id="username" placeholder="نام کاربری" autofocus>
+                <p class="div1InputError" id="usernameError"></p>
             </div>
             <div class="div2">
-            <input type="password" name="password" class="input2" id="password" placeholder="رمز عبور">
-            <input type="password" name="repeat" class="input2"  id="repeat" placeholder="تایید رمز">
+                <input type="password" name="password" class="input2" id="password" placeholder="رمز عبور">
+                <input type="password" name="repeat" class="input2"  id="repeat" placeholder="تایید رمز">
+                <p id="passwordError"></p>
             </div >
             <div class="div1">
-            <input type="email" name="email" class="input1"  id="email" placeholder="پست الکترونیکی">
+                <input type="email" name="email" class="input1"  id="email" placeholder="پست الکترونیکی">
+                <p class="div1InputError" id="emailError"></p>
             </div>
             <div class="div2">
-            <input type="text" name="firstName" class="input2" id="firstName" placeholder="نام">
-            <input type="text" name="lastName" class="input2" id="lastName" placeholder="نام خانوادگی">
+                <input type="text" name="firstName" class="input2" id="firstName" placeholder="نام">
+                <input type="text" name="lastName" class="input2" id="lastName" placeholder="نام خانوادگی">
+                <p id="nameError"></p>
             </div>
-            <select name="gender" id="gender">
-                <option style="text-align: center" value="male">مرد</option>
-                <option style="text-align: center" value="female">زن</option>
-            </select><br><br><br>
-            <input type="submit" name="submit" value="ارسال"><br>
+                <select name="gender" id="gender">
+                    <option style="text-align: center" value="male">مرد</option>
+                    <option style="text-align: center" value="female">زن</option>
+                </select><br><br><br>
+                    <input type="submit" name="submit" value="ارسال"><br>
             <div id="text">
                 <p>اگر حساب کاربری دارید میتوانید<a href="" style="color: dodgerblue"> وارد </a>شوید</p>
             </div>
         </form>
     </div>
-
 </body>
 </html>
