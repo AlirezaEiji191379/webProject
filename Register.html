@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>منوی ثبت نام</title>
-    <link rel="stylesheet" href="registerStyleSheet.css" type="text/css">
-    <script src="registerScript.js"></script>
+    <link rel="stylesheet" href="css/registerStyleSheet.css" type="text/css">
+    <script src="javascript/registerScript.js"></script>
 </head>
 <body>
     <div id="form" dir="rtl">
@@ -20,7 +20,7 @@
                 <p id="passwordError"></p>
             </div >
             <div class="div1">
-                <input type="email" name="email" class="input1"  id="email" placeholder="پست الکترونیکی"required>
+                <input type="email" name="email" class="input1"  id="email" placeholder="پست الکترونیکی" onkeyup="checkValidEmail()" required>
             </div>
             <div class="div2">
                 <input type="text" name="firstName" class="input2" id="firstName" placeholder="نام" onkeyup="checkValidName(id);"required>

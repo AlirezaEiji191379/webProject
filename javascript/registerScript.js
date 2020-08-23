@@ -37,6 +37,16 @@ function checkValidPassword(){
     let notEqualError="رمز عبور های وارد شده یکسان نیستند!";
     let correctPassword="رمز عبور معتبر است!";
     let passwordValue=passwordInput.value;
+    if(passwordValue!==""){
+        passwordInput.dir="ltr";
+    }else {
+        passwordInput.dir="rtl";
+    }
+    if(repeatInput.value!==""){
+        repeatInput.dir="ltr";
+    }else {
+        repeatInput.dir="rtl";
+    }
     const regex=RegExp("[^a-zA-Z0-9@#$%*_=+\\|/]");
     if(regex.test(passwordValue)==false) {
         if (passwordValue.length < 6) {
@@ -60,6 +70,18 @@ function checkValidPassword(){
         validation=false;
     }
 }
+
+function checkValidEmail() {
+    let emailInput=document.getElementById("email");
+    let emailValue=emailInput.value;
+    if(emailValue!==""){
+        emailInput.dir="ltr";
+    }else {
+        emailInput.dir="rtl";
+    }
+
+}
+
 function checkValidName(input) {
     let inputName;
     if(input==="firstName"){
