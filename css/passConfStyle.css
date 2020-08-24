@@ -1,10 +1,21 @@
+html{
+    height: 100%;
+    background-image: url("../images/registerBackground.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 #formDiv{
+    background-color: #f1f1f1;
     position: relative;
     top: 300px;
     height: 300px;
     width:600px;
     margin: auto;
-    border: solid;
+    border: none;
+    border-radius: 10px;
+    padding-top: 20px;
 }
 
 #code{
@@ -12,7 +23,42 @@
     right: 120px;
     width: 50%;
     height: 30px;
-    margin: 30px;
+    margin: 10px;
+    padding:0px 20px 0px 0px ;
+    border: none;
+    outline-color:  DodgerBlue;
+    border-radius: 4px;
+}
+
+input[type=submit]{
+    background-color: limegreen;
+    position: relative;
+    right: 190px;
+    height: 50px;
+    width: 200px;
+    border-radius: 4px;
+    border: none;
+    cursor: grabbing;
+}
+
+input[type=submit]:hover{
+    opacity: 0.8;
+}
+
+#warning{
+    position: relative;
+    right: 150px;
+}
+
+#clock{
+    position: relative;
+    right: 360px;
+}
+
+#resendCode{
+    position: relative;
+    right: 230px;
+
 }
 
 
