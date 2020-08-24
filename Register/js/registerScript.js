@@ -1,4 +1,3 @@
-
 function checkValidUsername() {
     let usernameInput=document.getElementById("username");
     let usernameError=document.getElementById("usernameError");
@@ -66,7 +65,6 @@ function checkValidPassword(){
         passwordError.style.color="red";
     }
 }
-
 function checkValidEmail() {
     let emailInput=document.getElementById("email");
     let emailValue=emailInput.value;
@@ -77,7 +75,6 @@ function checkValidEmail() {
     }
 
 }
-
 function checkValidName(input) {
     let inputName;
     if(input==="firstName"){
@@ -90,7 +87,8 @@ function checkValidName(input) {
     const regex=RegExp("[^A-Za-zا-ی]");
     let nameValue=inputName.value;
     if(regex.test(nameValue)==false){
-        nameError.innerHTML="";
+      if(nameError.innerHTML!=="لطفا نام و نام خانوادگی معتبر وارد کنید!")
+          nameError.innerHTML="";
     }else{
         nameError.innerHTML=nameErrorMessage;
         nameError.style.color="red";
@@ -124,7 +122,6 @@ function checkNotEmpty() {
         return;
     }
 }
-
 function isEveryThingTrue() {
     let usernameError=document.getElementById("usernameError");
     let passwordError=document.getElementById("passwordError");
@@ -138,11 +135,40 @@ function isEveryThingTrue() {
         }else return false;
 }
 
+let username=document.getElementById("username");
+let password=document.getElementById("password");
+let repeatPassword=document.getElementById("repeat");
+let email=document.getElementById("email");
+let firstName=document.getElementById("firstName");
+let lastName=document.getElementById("lastName");
 
-
-
-
-
-
-
-
+username.addEventListener("keypress",function (event) {
+    if(event.key==="Enter"){
+        checkNotEmpty();
+    }
+});
+password.addEventListener("keypress",function (event) {
+    if(event.key==="Enter"){
+        checkNotEmpty();
+    }
+});
+repeatPassword.addEventListener("keypress",function (event) {
+    if(event.key==="Enter"){
+        checkNotEmpty();
+    }
+});
+email.addEventListener("keypress",function (event) {
+    if(event.key==="Enter"){
+        checkNotEmpty();
+    }
+});
+firstName.addEventListener("keypress",function (event) {
+    if(event.key==="Enter"){
+        checkNotEmpty();
+    }
+});
+lastName.addEventListener("keypress",function (event) {
+    if(event.key==="Enter"){
+        checkNotEmpty();
+    }
+});
