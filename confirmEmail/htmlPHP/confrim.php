@@ -14,8 +14,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>تایید ایمیل</title>
-        <script src="javascript/passConfScript.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/passConfStyle.css">
+        <script src="../js/passConfScript.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/passConfStyle.css">
     </head>
     <body>
     <div id="formDiv"dir="rtl">
