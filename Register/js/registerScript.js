@@ -77,9 +77,12 @@ function checkValidEmail() {
 }
 function checkValidName(input) {
     let inputName;
+    let anotherInput;
     if(input==="firstName"){
         inputName=document.getElementById("firstName");
+        anotherInput=document.getElementById("lastName");
     }else if(input==="lastName"){
+        anotherInput=document.getElementById("firstName");
         inputName=document.getElementById("lastName");
     }
     let nameErrorMessage="لطفا نام و نام خانوادگی معتبر وارد کنید!";
@@ -87,8 +90,13 @@ function checkValidName(input) {
     const regex=RegExp("[^A-Za-zا-ی]");
     let nameValue=inputName.value;
     if(regex.test(nameValue)==false){
-      if(nameError.innerHTML!=="لطفا نام و نام خانوادگی معتبر وارد کنید!")
-          nameError.innerHTML="";
+        if(regex.test(anotherInput.value)==false){
+            nameError.innerHTML="";
+        }
+        else{
+            nameError.innerHTML=nameErrorMessage;
+            nameError.style.color="red";
+        }
     }else{
         nameError.innerHTML=nameErrorMessage;
         nameError.style.color="red";

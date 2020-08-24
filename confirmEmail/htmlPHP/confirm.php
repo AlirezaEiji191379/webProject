@@ -1,5 +1,10 @@
 <?php
 
+echo "<pre>";
+print_r($_POST);
+echo "</pre>"
+
+
 ?>
 
 <html dir="rtl">
@@ -16,7 +21,7 @@
             کد تاییدی برای پست الکترونیکی شما ارسال شده است!
         </p>
 
-        <form id="myForm">
+        <form id="myForm" >
             <div id="div1">
             <input type="text" name="code" id="code"  placeholder="کد تایید را وارد کنید">
             </div>
