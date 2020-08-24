@@ -1,12 +1,5 @@
 <?php
 
-
-
-
-
-
-
-
 ?>
 
 <html dir="rtl">

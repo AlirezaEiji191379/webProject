@@ -1,4 +1,4 @@
-let validation=true;
+
 function checkValidUsername() {
     let usernameInput=document.getElementById("username");
     let usernameError=document.getElementById("usernameError");
@@ -16,16 +16,16 @@ function checkValidUsername() {
         if(usernameValue.length<8){
             usernameError.innerHTML=numericErrorMessage;
             usernameError.style.color="red";
-            validation=false;
+            return  false;
         }else{
             usernameError.innerHTML=correctUsername;
             usernameError.style.color="green";
-            validation=true;
+            return false;
         }
     }else{
             usernameError.innerHTML = regexErrorMessage;
             usernameError.style.color = "red";
-            validation=false;
+            return false;
     }
 }
 function checkValidPassword(){
@@ -52,22 +52,18 @@ function checkValidPassword(){
         if (passwordValue.length < 6) {
             passwordError.innerHTML = numericError;
             passwordError.style.color = "red";
-            validation = false;
         } else {
             if (repeatInput.value !== passwordValue) {
                 passwordError.innerHTML = notEqualError;
                 passwordError.style.color = "red";
-                validation = false;
                 return;
             }
             passwordError.innerHTML = correctPassword;
             passwordError.style.color = "green";
-            validation = true;
         }
     }else {
         passwordError.innerHTML=regexErrorMessage;
         passwordError.style.color="red";
-        validation=false;
     }
 }
 
@@ -98,7 +94,6 @@ function checkValidName(input) {
     }else{
         nameError.innerHTML=nameErrorMessage;
         nameError.style.color="red";
-        validation=false;
     }
 }
 //// این پایینیه کار داره!
@@ -112,16 +107,37 @@ function checkNotEmpty() {
     let nameError=document.getElementById("nameError");
     let form=document.getElementById("myForm");
     if(username=="" || password=="" || repeatPassword=="" || email=="" || firstName=="" || lastName==""){
-       validation=false;
            form.reset();
            nameError.innerHTML="لطفا همه فیلد ها را پر کنید!";
            nameError.style.color="red";
        return;
-   }else {
-        form.action="confrim.php";
-        nameError.innerHTML="";
+   }
+    if(isEveryThingTrue()==true){
+        form.action="../../confirmEmail/htmlPHP/confirm.php";
+        return;
+    }else{
+        form.reset();
+        document.getElementById("usernameError").innerHTML="";
+        document.getElementById("passwordError").innerHTML="";
+        nameError.innerHTML="لطفا فیلد ها را درست پر کنید!";
+        nameError.style.color="red";
+        return;
     }
 }
+
+function isEveryThingTrue() {
+    let usernameError=document.getElementById("usernameError");
+    let passwordError=document.getElementById("passwordError");
+    let nameError=document.getElementById("nameError");
+        if(usernameError.innerHTML==="نام کاربری معتبر است!"){
+            if(passwordError.innerHTML==="رمز عبور معتبر است!"){
+                if(nameError.innerHTML===""){
+                    return true;
+                }else return false;
+            }else return false;
+        }else return false;
+}
+
 
 
 
