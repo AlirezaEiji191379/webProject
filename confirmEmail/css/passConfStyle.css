@@ -1,9 +1,9 @@
 html{
-    /*height: 100%;*/
-    /*background-image: url("../../confirmEmail/images/registerBackground.jpg");*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: center;*/
-    /*background-size: cover;*/
+    height: 100%;
+    background-image: url("../../confirmEmail/images/registerBackground.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 #formDiv{
@@ -52,7 +52,12 @@ input[type=submit]:hover{
 
 #clock{
     position: relative;
-    right: 360px;
+    right: 390px;
+}
+
+#error{
+    position: relative;
+    right: 230px;
 }
 
 #resendCode{
