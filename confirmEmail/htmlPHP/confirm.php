@@ -1,5 +1,23 @@
 <?php
+session_start();
+define("bigStr","ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789");
+$username=$_POST["username"];
+$password=$_POST["password"];
+$email=$_POST["email"];
+$firstName=$_POST["firstName"];
+$lastName=$_POST["lastName"];
+$emailCode="";
+for($i=0 ;$i<20;$i++) {
+    $j=rand(0,61);
+    $emailCode.=bigStr[$j];
+}
 
+$_SESSION["username"]=$username;
+$_SESSION["password"]=$password;
+$_SESSION["email"]=$email;
+$_SESSION["firstName"]=$firstName;
+$_SESSION["lastName"]=$lastName;
+$_SESSION["emailCode"]=$emailCode;
 
 
 ?>
@@ -17,7 +35,7 @@
         <p id="warning">
             کد تاییدی برای پست الکترونیکی شما ارسال شده است!
         </p>
-        <form id="myForm" >
+        <form id="myForm" action="index.php">
             <div id="div1">
             <input type="text" name="code" id="code"  placeholder="کد تایید را وارد کنید">
             </div>

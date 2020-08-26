@@ -1,4 +1,4 @@
-let time=15;
+let time=300;
 let timerId=setTimeout(function timeCalculate () {
     if(time==0){
         location.replace("timesUp.html");
@@ -10,3 +10,10 @@ let timerId=setTimeout(function timeCalculate () {
     time--;
     setTimeout(timeCalculate,1000);
 },1000);
+
+
+
+
+
+
+
