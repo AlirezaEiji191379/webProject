@@ -22,11 +22,11 @@
             </div>
             <div class="input-fluid">
                 <span class="hiddenSpan" id="password">رمز عبور</span>
-                <input class="password" id="passwordInput" type="password" name="passwordInput" maxlength="20" placeholder="رمز عبور" onkeyup="checkValidPassword()">
+                <input class="password" id="passwordInput" type="password" name="password" maxlength="20" placeholder="رمز عبور" onkeyup="checkValidPassword()">
             </div>
             <div class="input-fluid">
                 <span class="hiddenSpan" id="confirm">تایید</span>
-                <input class="confirm" id="confirmInput" type="password" name="password" maxlength="20" placeholder="تایید" onkeyup="checkValidPassword()">
+                <input class="confirm" id="confirmInput" type="password" maxlength="20" placeholder="تایید" onkeyup="checkValidPassword()">
                 <p id="passwordError"></p>
             </div>
             <div class="input-fluid">
