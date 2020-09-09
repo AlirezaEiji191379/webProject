@@ -12,8 +12,9 @@
 <body>
 
     <div class="container">
-        <form method="post">
+        <form method="post" id="myForm">
             <h1>فرم ثبت نام</h1>
+            <p id="generalError"><?php include_once ("generalError.php");?></p>
             <div class="input-fluid">
                 <span class="hiddenSpan" id="username">نام کاربری</span>
                  <input class="username" type="text" name="username" id="usernameInput" maxlength="20" placeholder="نام کاربری" onkeyup="checkValidUsername()">
@@ -49,7 +50,7 @@
 <!--                </select>-->
 <!--            </div>-->
             <div class="ClearFix">
-            <input type="submit" value="ارسال">
+            <input type="submit" value="ارسال" onclick="submitCode()">
             </div>
 
         </form>

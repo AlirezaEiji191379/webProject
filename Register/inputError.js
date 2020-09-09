@@ -19,12 +19,12 @@ function checkValidUsername() {
         }else{
             usernameError.innerHTML=correctUsername;
             usernameError.style.color="green";
-            return false;
+            return true;
         }
     }else{
         usernameError.innerHTML = regexErrorMessage;
         usernameError.style.color = "red";
-        return false;
+            return false;
     }
 }
 
@@ -52,18 +52,21 @@ function checkValidPassword(){
         if (passwordValue.length < 6) {
             passwordError.innerHTML = numericError;
             passwordError.style.color = "red";
+            return false;
         } else {
             if (repeatInput.value !== passwordValue) {
                 passwordError.innerHTML = notEqualError;
                 passwordError.style.color = "red";
-                return;
+                return false;
             }
             passwordError.innerHTML = correctPassword;
             passwordError.style.color = "green";
+            return  true;
         }
     }else {
         passwordError.innerHTML=regexErrorMessage;
         passwordError.style.color="red";
+        return  false;
     }
 }
 
@@ -94,13 +97,49 @@ function checkValidName(input) {
     if(regex.test(nameValue)==false){
         if(regex.test(anotherInput.value)==false){
             nameError.innerHTML="";
+            return true;
         }
         else{
             nameError.innerHTML=nameErrorMessage;
             nameError.style.color="red";
+            return false;
         }
     }else{
         nameError.innerHTML=nameErrorMessage;
         nameError.style.color="red";
+        return false;
     }
 }
+
+function submitCode() {
+    let username=document.getElementById("usernameInput").value.trim();
+    let password=document.getElementById("passwordInput").value.trim();
+    let repeat=document.getElementById("confirmInput").value.trim();
+    let email=document.getElementById("emailInput").value.trim();
+    let firstName=document.getElementById("firstNameInput").value.trim();
+    let lastName=document.getElementById("lastNameInput").value.trim();
+    let form=document.getElementById("myForm");
+
+    if(username==="" || password==="" || repeat==="" || email==="" || firstName===""|| lastName===""){
+        form.action="Register.php?error=1";
+        return;
+    }
+    if(checkValidUsername()===true){
+        if(checkValidPassword()===true){
+            if(checkValidName("firstNameInput")==true){
+                if(checkValidName("lastNameInput")===true){
+                    form.action="sendEmailCode.php";
+                }else{
+                    form.action="Register.php?error=2";
+                }
+            }else{
+                form.action="Register.php?error=2";
+            }
+        }else{
+            form.action="Register.php?error=2";
+        }
+    }else{
+        form.action="Register.php?error=2";
+    }
+}
+
