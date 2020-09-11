@@ -4,6 +4,7 @@ function checkValidUsername() {
     let usernameValue=usernameInput.value;
     let regexErrorMessage="نام کاربری فقط شامل حروف انگلیسی و اعداد است!";
     let numericErrorMessage="نام کاربری باید حداقل 8 کاراکتر داشته باشد!";
+    let notAlpha="نام کاربری باید شامل حرف انگلیسی باشد!";
     let correctUsername="نام کاربری معتبر است!";
     if(usernameValue!==""){
         usernameInput.dir="ltr";
@@ -17,6 +18,21 @@ function checkValidUsername() {
             usernameError.style.color="red";
             return  false;
         }else{
+            let pattern=RegExp("[A-Za-z]");
+            if(usernameValue.match(pattern)===null){
+                usernameError.innerHTML=notAlpha;
+                usernameError.style.color="red";
+                return false;
+            }
+
+            // let xhttp=new XMLHttpRequest();
+            // xhttp.onreadystatechange=function(){
+            //     if(this.readyState==4 && this.status==200){
+            //         usernameError.innerHTML=this.responseText;
+            //     }
+            // };
+            // xhttp.open("GET","checkFromDB.php?field=username",true);
+            // xhttp.send();
             usernameError.innerHTML=correctUsername;
             usernameError.style.color="green";
             return true;
@@ -108,6 +124,26 @@ function checkValidName(input) {
         nameError.innerHTML=nameErrorMessage;
         nameError.style.color="red";
         return false;
+    }
+}
+
+
+function checkValidPhoneNumber() {
+    let phoneNumberInput=document.getElementById("phoneNumberInput");
+    let phoneNumberValue=phoneNumberInput.value;
+    let phoneNumberError=document.getElementById("phoneError");
+    if(phoneNumberValue===""){
+        phoneNumberInput.dir="rtl";
+    }else{
+        phoneNumberInput.dir="ltr";
+    }
+    const regex=RegExp("09[0-9]{9}");
+    if(regex.test(phoneNumberValue)==false){
+        phoneNumberError.innerHTML="لطفا شماره تلفن معتبر وارد کنید!";
+        phoneNumberError.style.color="red";
+    }else{
+        // phoneNumberError.innerHTML="شماره تلفن معبتر است!";
+        // phoneNumberError.style.color="green";
     }
 }
 

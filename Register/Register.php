@@ -35,6 +35,11 @@
                 <p  id="emailError"></p>
             </div>
             <div class="input-fluid">
+                <span class="hiddenSpan" id="phoneNumber">تلفن همراه</span>
+                <input class="phoneNumber" id="phoneNumberInput" type="text" name="phoneNumber" maxlength="11" placeholder="تلفن همراه" onkeyup="checkValidPhoneNumber()">
+                <p  id="phoneError"></p>
+            </div>
+            <div class="input-fluid">
                 <span class="hiddenSpan" id="firstName">نام</span>
                 <input class="firstName" id="firstNameInput" type="text" name="firstName" maxlength="20" placeholder="نام" onkeyup="checkValidName(id)">
             </div>
