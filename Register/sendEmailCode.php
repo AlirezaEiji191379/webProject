@@ -1,6 +1,9 @@
 <?php
-session_start();
 
+if(filter_var($_POST["email"],FILTER_VALIDATE_EMAIL)==false){
+    header("location: Register.php?error=4");
+}
+session_start();
 $_SESSION["username"]=$_POST["username"];
 $_SESSION["password"]=$_POST["password"];
 $_SESSION["email"]=$_POST["email"];
