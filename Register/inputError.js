@@ -5,12 +5,6 @@ function checkValidUsername() {
     let regexErrorMessage="نام کاربری فقط شامل حروف انگلیسی و اعداد است!";
     let numericErrorMessage="نام کاربری باید حداقل 8 کاراکتر داشته باشد!";
     let notAlpha="نام کاربری باید شامل حرف انگلیسی باشد!";
-    let correctUsername="نام کاربری معتبر است!";
-    if(usernameValue!==""){
-        usernameInput.dir="ltr";
-    }else {
-        usernameInput.dir="rtl";
-    }
     const reg=RegExp("[^A-Za-z0-9]");
     if(reg.test(usernameValue)==false){
         if(usernameValue.length<8){
@@ -25,17 +19,19 @@ function checkValidUsername() {
                 return false;
             }
 
-            // let xhttp=new XMLHttpRequest();
-            // xhttp.onreadystatechange=function(){
-            //     if(this.readyState==4 && this.status==200){
-            //         usernameError.innerHTML=this.responseText;
-            //     }
-            // };
-            // xhttp.open("GET","checkFromDB.php?field=username",true);
-            // xhttp.send();
-            usernameError.innerHTML=correctUsername;
-            usernameError.style.color="green";
-            return true;
+            let xhttp=new XMLHttpRequest();
+            xhttp.onreadystatechange=function(){
+                if(this.readyState==4 && this.status==200){
+                    usernameError.innerHTML=this.responseText;
+                }
+            };
+            xhttp.open("GET","checkFromDB.php?username="+usernameValue,true);
+            xhttp.send();
+            if(usernameError.innerHTML==="نام کاربری معتبر است!"){
+                return true;
+            }else{
+                return false;
+            }
         }
     }else{
         usernameError.innerHTML = regexErrorMessage;
@@ -53,16 +49,6 @@ function checkValidPassword(){
     let notEqualError="رمز عبور های وارد شده یکسان نیستند!";
     let correctPassword="رمز عبور معتبر است!";
     let passwordValue=passwordInput.value;
-    if(passwordValue!==""){
-        passwordInput.dir="ltr";
-    }else {
-        passwordInput.dir="rtl";
-    }
-    if(repeatInput.value!==""){
-        repeatInput.dir="ltr";
-    }else {
-        repeatInput.dir="rtl";
-    }
     const regex=RegExp("[^a-zA-Z0-9@#$%*_=+\\|/]");
     if(regex.test(passwordValue)==false) {
         if (passwordValue.length < 6) {
@@ -87,14 +73,23 @@ function checkValidPassword(){
 }
 
 function checkValidEmail() {
-    let emailInput=document.getElementById("emailInput");
-    let emailValue=emailInput.value;
-    if(emailValue!==""){
-        emailInput.dir="ltr";
-    }else {
-        emailInput.dir="rtl";
+    let emailInput = document.getElementById("emailInput");
+    let emailValue = emailInput.value;
+    let emailError = document.getElementById("emailError");
+    emailError.innerHTML=emailInput.value;
+    let xhttp=new XMLHttpRequest();
+    xhttp.onreadystatechange=function(){
+        if(this.readyState==4 && this.status==200){
+            emailError.innerHTML=this.responseText;
+        }
+    };
+    xhttp.open("GET","checkFromDB.php?email="+emailValue,true);
+    xhttp.send();
+    if(emailError.innerHTML===""){
+        return true;
+    }else{
+        return false;
     }
-
 }
 function checkValidName(input) {
     let inputName;
@@ -127,7 +122,6 @@ function checkValidName(input) {
     }
 }
 
-
 function checkValidPhoneNumber() {
     let phoneNumberInput=document.getElementById("phoneNumberInput");
     let phoneNumberValue=phoneNumberInput.value;
@@ -142,8 +136,20 @@ function checkValidPhoneNumber() {
         phoneNumberError.innerHTML="لطفا شماره تلفن معتبر وارد کنید!";
         phoneNumberError.style.color="red";
     }else{
-        // phoneNumberError.innerHTML="شماره تلفن معبتر است!";
-        // phoneNumberError.style.color="green";
+         phoneNumberError.innerHTML="";
+        let xhttp=new XMLHttpRequest();
+        xhttp.onreadystatechange=function(){
+            if(this.readyState==4 && this.status==200){
+                phoneNumberError.innerHTML=this.responseText;
+            }
+        };
+        xhttp.open("GET","checkFromDB.php?phone="+phoneNumberValue,true);
+        xhttp.send();
+        if(phoneNumberError.innerHTML=="این شماره معتبر است!"){
+            return true;
+        }else{
+            return  false;
+        }
     }
 }
 
@@ -164,7 +170,15 @@ function submitCode() {
         if(checkValidPassword()===true){
             if(checkValidName("firstNameInput")==true){
                 if(checkValidName("lastNameInput")===true){
-                    form.action="sendEmailCode.php";
+                    if(checkValidPhoneNumber()===true){
+                        if(checkValidEmail()===true){
+                            form.action="sendEmailCode.php";
+                        }else{
+                            form.action="Register.php?error=2";
+                        }
+                    }else{
+                        form.action="Register.php?error=2";
+                    }
                 }else{
                     form.action="Register.php?error=2";
                 }
@@ -179,3 +193,11 @@ function submitCode() {
     }
 }
 
+function changeDir(id) {
+    let inputName=document.getElementById(id);
+    if(inputName.value===""){
+        inputName.dir="rtl";
+    }else{
+        inputName.dir="ltr";
+    }
+}

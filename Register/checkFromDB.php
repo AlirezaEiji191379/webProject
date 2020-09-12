@@ -1,17 +1,56 @@
 <?php
 include_once("../DBInformation/dbInf.php");
 
-if(isset($_GET["field"])){
-    $mysql=new mysqli(host,username,password,dbname);
+$mysql=new mysqli(host,username,password,dbname);
 
 
-    if($_GET["field"]==="username"){
 
+
+if(isset($_GET["email"])){
+    $email=stripcslashes(htmlspecialchars(trim($_GET["email"])));
+    if(filter_var($email,FILTER_VALIDATE_EMAIL)==false){
+        echo "لطفا ایمیل معتبر وارد کنید!";
     }
-    elseif ($_GET["field"]==="email"){
-        echo "hello email";
+    else {
+        $statement = $mysql->prepare("SELECT `email` FROM `users` WHERE `email`=?");
+        $statement->bind_param("s", $email);
+        $statement->execute();
+        $result = $statement->get_result();
+        if ($result->num_rows > 0) {
+            echo "<span style='color: red'>این پست الکرونیکی قبلا ثبت شده است!</span>";
+        } else {
+            echo "";
+        }
     }
 }
+
+
+if(isset($_GET["username"])){
+    $username=stripcslashes(htmlspecialchars(trim($_GET["username"])));
+    $statement=$mysql->prepare("SELECT `username` FROM `users` WHERE `username`=?");
+    $statement->bind_param("s",$username);
+    $statement->execute();
+    $result=$statement->get_result();
+    if($result->num_rows>0){
+        echo "<span style='color: red'>این نام کاربری قبلا ثبت شده است!</span>";
+    }else{
+        echo "<span style='color:green;'>نام کاربری معتبر است!</span>";
+    }
+}
+
+if(isset($_GET["phone"])){
+    $phone=stripcslashes(htmlspecialchars(trim($_GET["phone"])));
+    $statement=$mysql->prepare("SELECT `phone` FROM `users` WHERE `phone`=?");
+    $statement->bind_param("s",$phone);
+    $statement->execute();
+    $result=$statement->get_result();
+    if($result->num_rows>0){
+        echo "<span style='color: red'>این شماره موجود است!</span>";
+    }else{
+        echo "<span style='color:green;'>این شماره معتبر است!</span>";
+    }
+}
+
 
 
 
