@@ -10,33 +10,33 @@ function checkValidUsername() {
         if(usernameValue.length<8){
             usernameError.innerHTML=numericErrorMessage;
             usernameError.style.color="red";
-            return  false;
+            return;
         }else{
             let pattern=RegExp("[A-Za-z]");
             if(usernameValue.match(pattern)===null){
                 usernameError.innerHTML=notAlpha;
                 usernameError.style.color="red";
-                return false;
+                return;
             }
-
             let xhttp=new XMLHttpRequest();
             xhttp.onreadystatechange=function(){
                 if(this.readyState==4 && this.status==200){
                     usernameError.innerHTML=this.responseText;
+                    if(usernameError.innerHTML=="نام کاربری معتبر است!"){
+                        usernameError.style.color="green";
+                    }else{
+                        usernameError.style.color="red";
+                    }
+
                 }
             };
             xhttp.open("GET","checkFromDB.php?username="+usernameValue,true);
             xhttp.send();
-            if(usernameError.innerHTML==="نام کاربری معتبر است!"){
-                return true;
-            }else{
-                return false;
-            }
         }
     }else{
         usernameError.innerHTML = regexErrorMessage;
         usernameError.style.color = "red";
-            return false;
+            return;
     }
 }
 
@@ -47,28 +47,27 @@ function checkValidPassword(){
     let regexErrorMessage="رمز عبور باید شامل حروف انگلیسی اعداد و نشانه ها باشد!";
     let numericError="رمز عبور باید حداقل 6 حرف باشد!";
     let notEqualError="رمز عبور های وارد شده یکسان نیستند!";
-    let correctPassword="رمز عبور معتبر است!";
+    //let correctPassword="رمز عبور معتبر است!";
     let passwordValue=passwordInput.value;
     const regex=RegExp("[^a-zA-Z0-9@#$%*_=+\\|/]");
     if(regex.test(passwordValue)==false) {
         if (passwordValue.length < 6) {
             passwordError.innerHTML = numericError;
             passwordError.style.color = "red";
-            return false;
+            return;
         } else {
             if (repeatInput.value !== passwordValue) {
                 passwordError.innerHTML = notEqualError;
                 passwordError.style.color = "red";
-                return false;
+                return;
             }
-            passwordError.innerHTML = correctPassword;
-            passwordError.style.color = "green";
-            return  true;
+            passwordError.innerHTML ="";
+            return;
         }
     }else {
         passwordError.innerHTML=regexErrorMessage;
         passwordError.style.color="red";
-        return  false;
+        return;
     }
 }
 
@@ -76,7 +75,6 @@ function checkValidEmail() {
     let emailInput = document.getElementById("emailInput");
     let emailValue = emailInput.value;
     let emailError = document.getElementById("emailError");
-    emailError.innerHTML=emailInput.value;
     let xhttp=new XMLHttpRequest();
     xhttp.onreadystatechange=function(){
         if(this.readyState==4 && this.status==200){
@@ -85,11 +83,6 @@ function checkValidEmail() {
     };
     xhttp.open("GET","checkFromDB.php?email="+emailValue,true);
     xhttp.send();
-    if(emailError.innerHTML===""){
-        return true;
-    }else{
-        return false;
-    }
 }
 function checkValidName(input) {
     let inputName;
@@ -108,17 +101,17 @@ function checkValidName(input) {
     if(regex.test(nameValue)==false){
         if(regex.test(anotherInput.value)==false){
             nameError.innerHTML="";
-            return true;
+            return;
         }
         else{
             nameError.innerHTML=nameErrorMessage;
             nameError.style.color="red";
-            return false;
+            return;
         }
     }else{
         nameError.innerHTML=nameErrorMessage;
         nameError.style.color="red";
-        return false;
+        return;
     }
 }
 
@@ -135,6 +128,7 @@ function checkValidPhoneNumber() {
     if(regex.test(phoneNumberValue)==false){
         phoneNumberError.innerHTML="لطفا شماره تلفن معتبر وارد کنید!";
         phoneNumberError.style.color="red";
+        return;
     }else{
          phoneNumberError.innerHTML="";
         let xhttp=new XMLHttpRequest();
@@ -145,11 +139,6 @@ function checkValidPhoneNumber() {
         };
         xhttp.open("GET","checkFromDB.php?phone="+phoneNumberValue,true);
         xhttp.send();
-        if(phoneNumberError.innerHTML=="این شماره معتبر است!"){
-            return true;
-        }else{
-            return  false;
-        }
     }
 }
 
@@ -162,20 +151,22 @@ function submitCode() {
     let lastName=document.getElementById("lastNameInput").value.trim();
     let form=document.getElementById("myForm");
 
+    let usernameError=document.getElementById("usernameError").innerHTML;
+    let passwordError=document.getElementById("passwordError").innerHTML;
+    let emailError=document.getElementById("emailError").innerHTML;
+    let phoneError=document.getElementById("phoneError").innerHTML;
+    let nameError=document.getElementById("nameError").innerHTML;
+
     if(username==="" || password==="" || repeat==="" || email==="" || firstName===""|| lastName===""){
         form.action="Register.php?error=1";
         return;
     }
-    if(checkValidUsername()===true){
-        if(checkValidPassword()===true){
-            if(checkValidName("firstNameInput")==true){
-                if(checkValidName("lastNameInput")===true){
-                    if(checkValidPhoneNumber()===true){
-                        if(checkValidEmail()===true){
-                            form.action="sendEmailCode.php";
-                        }else{
-                            form.action="Register.php?error=2";
-                        }
+    if(usernameError===""){
+        if(passwordError===""){
+            if(emailError===""){
+                if(phoneError===""){
+                    if(nameError===""){
+                        form.action="sendEmailCode.php";
                     }else{
                         form.action="Register.php?error=2";
                     }
