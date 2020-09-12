@@ -17,7 +17,7 @@ if(isset($_GET["email"])){
         $statement->execute();
         $result = $statement->get_result();
         if ($result->num_rows > 0) {
-            echo "<span style='color: red'>این پست الکرونیکی قبلا ثبت شده است!</span>";
+            echo "این پست الکرونیکی قبلا ثبت شده است!";
         } else {
             echo "";
         }
@@ -32,9 +32,9 @@ if(isset($_GET["username"])){
     $statement->execute();
     $result=$statement->get_result();
     if($result->num_rows>0){
-        echo "<span style='color: red'>این نام کاربری قبلا ثبت شده است!</span>";
+        echo "این نام کاربری قبلا ثبت شده است!";
     }else{
-        echo "<span style='color:green;'>نام کاربری معتبر است!</span>";
+        echo "";
     }
 }
 
@@ -45,9 +45,9 @@ if(isset($_GET["phone"])){
     $statement->execute();
     $result=$statement->get_result();
     if($result->num_rows>0){
-        echo "<span style='color: red'>این شماره موجود است!</span>";
+        echo "این شماره موجود است!";
     }else{
-        echo "<span style='color:green;'>این شماره معتبر است!</span>";
+        echo "";
     }
 }
 
