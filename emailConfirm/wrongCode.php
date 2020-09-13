@@ -19,5 +19,6 @@ if(isset($_COOKIE[session_name()])) {
 }else{
     if(isset($_GET["error"])) {
         echo "کاربر گرامی مجددا اقدام به ثبت نام کنید!";
+        header("location: ../register/Register.php?error=3");
     }
 }
