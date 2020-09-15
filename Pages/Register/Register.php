@@ -14,7 +14,7 @@
     <div class="container">
         <form method="post" id="myForm">
             <h1>فرم ثبت نام</h1>
-            <p id="generalError"><?php include_once ("generalError.php");?></p>
+            <p id="generalError"><?php include_once("../../includes/Register/generalError.php");?></p>
             <div class="input-fluid">
                 <span class="hiddenSpan" id="username">نام کاربری</span>
                  <input class="username" type="text" name="username" id="usernameInput" maxlength="20" placeholder="نام کاربری" onblur="checkValidUsername()" onkeyup="changeDir(id)">
@@ -61,7 +61,7 @@
         </form>
     </div>
 </body>
-    <script src="../plugin/jQuery/jquery-3.5.1.js"></script>
+    <script src="../../includes/plugin/jQuery/jquery-3.5.1.js"></script>
     <script src="animateSpan.js"></script>
 
 </html>

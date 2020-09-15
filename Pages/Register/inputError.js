@@ -30,7 +30,7 @@ function checkValidUsername() {
 
                 }
             };
-            xhttp.open("GET","checkFromDB.php?username="+usernameValue,true);
+            xhttp.open("GET","../../includes/Register/checkFromDb.php?username="+usernameValue,true);
             xhttp.send();
         }
     }else{
@@ -81,7 +81,7 @@ function checkValidEmail() {
             emailError.innerHTML=this.responseText;
         }
     };
-    xhttp.open("GET","checkFromDB.php?email="+emailValue,true);
+    xhttp.open("GET","../../includes/Register/checkFromDb.php?email="+emailValue,true);
     xhttp.send();
 }
 function checkValidName(input) {
@@ -137,7 +137,7 @@ function checkValidPhoneNumber() {
                 phoneNumberError.innerHTML=this.responseText;
             }
         };
-        xhttp.open("GET","checkFromDB.php?phone="+phoneNumberValue,true);
+        xhttp.open("GET","../../includes/Register/checkFromDb.php?phone="+phoneNumberValue,true);
         xhttp.send();
     }
 }
@@ -166,7 +166,7 @@ function submitCode() {
             if(emailError===""){
                 if(phoneError===""){
                     if(nameError===""){
-                        form.action="sendEmailCode.php";
+                        form.action="../../includes/Register/sendEmailCode.php";
                     }else{
                         form.action="Register.php?error=2";
                     }

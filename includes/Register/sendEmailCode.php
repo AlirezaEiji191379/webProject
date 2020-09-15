@@ -16,6 +16,6 @@ $_SESSION["time"]=time();
 
 //setcookie(session_name(),session_id(),time()+1800,"/");
 
-header("location: ../emailConfirm/emailConfirmation.php");
+header("location: ../../Pages/emailConfirm/emailConfirmation.php");
 
 
