@@ -1,6 +1,7 @@
+<?php include_once("../../includes/checkValidation/adminValidation.php"); ?>
 <!DOCTYPE html>
 <html>
-    <header>
+<header></header>
          <link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
     
