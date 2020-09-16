@@ -11,7 +11,7 @@
         </div> 
         
         <div class="startExamBtn">
-            	<button class="getStartedButton" onClick="parent.location='createExam.html'">ایجاد آزمون</button>
+            	<button class="getStartedButton" onClick="parent.location='createExam.php'">ایجاد آزمون</button>
         </div>
     </body>
     
