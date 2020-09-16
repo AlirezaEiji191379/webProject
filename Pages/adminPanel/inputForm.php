@@ -21,7 +21,7 @@
 
 <!-- -->
 
-<form action="../../includes/adminPanel/inputFormValidation.php" method="post" enctype="text/plain" class="form-horizontal">
+<form action="../../includes/adminPanel/inputFormValidation.php" method="post" class="form-horizontal">
   <div class="userpassContainer">
      <!-- <input type="text" name="username" placeholder="Username">
       <input type="text" name="password" placeholder="Password"> -->
